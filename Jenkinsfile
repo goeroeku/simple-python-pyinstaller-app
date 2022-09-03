@@ -20,7 +20,7 @@ node {
         }catch (Exception ex) {
             echo 'Error!'
         }finally{
-            archiveArtifacts "/var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources/dist/add2vals"
+            archiveArtifacts "sources/dist/add2vals"
             sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'rm -rf build dist'"
         }
     }
