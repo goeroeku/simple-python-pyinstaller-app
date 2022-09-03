@@ -1,3 +1,5 @@
+// https://www.jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller/
+
 node {
     withDockerContainer(image: 'python:2-alpine', toolName: 'docker') {
         stage('Build') {
