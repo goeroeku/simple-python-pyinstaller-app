@@ -14,11 +14,16 @@ node {
         }
     }
     stage('Deliver') {
-        dir(path: env.BUILD_ID) {
-            unstash(name: 'compiled-results')
-            sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'pyinstaller -F add2vals.py'"
+        try {
+            dir(path: env.BUILD_ID) {
+                unstash(name: 'compiled-results')
+                sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'pyinstaller -F add2vals.py'"
+            }
         }
-        success {
+        catch (exc) {
+            echo 'Error!'
+            throw
+        }finally{
             archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
             sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'rm -rf build dist'"
         }
