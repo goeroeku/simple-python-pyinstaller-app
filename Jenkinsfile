@@ -23,7 +23,7 @@ node {
             echo 'Error!'
         }finally{
             archiveArtifacts "sources/dist/add2vals"
-            sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'rm -rf build dist'"
+            // sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'rm -rf build dist'"
         }
     }
 }
