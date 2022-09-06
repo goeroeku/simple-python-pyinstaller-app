@@ -15,6 +15,9 @@ node {
             }
         }
     }
+    stage('Manual Approval') {
+        input message: 'Lanjutkan ke tahap Deploy?'
+    }
     stage('Deploy') {
         try {
             unstash(name: 'compiled-results')
