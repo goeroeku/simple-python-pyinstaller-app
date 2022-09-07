@@ -26,8 +26,9 @@ node {
             echo 'Error!'
         }finally{
             archiveArtifacts "sources/dist/add2vals"
-            // sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'rm -rf build dist'"
-            sshPublisher(publishers: [sshPublisherDesc(configName: 'ec2-terraform', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'sources/dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+            sshPublisher(publishers: [sshPublisherDesc(configName: 'ec2-terraform', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'sources/dist', sourceFiles: 'sources/dist/*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
             sleep(time: 1, unit: "MINUTES")
         }
     }
