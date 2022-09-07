@@ -27,7 +27,7 @@ node {
         }finally{
             archiveArtifacts "sources/dist/add2vals"
 
-            sshPublisher(publishers: [sshPublisherDesc(configName: 'ec2-terraform', transfers: [sshTransfer(cleanRemote: false, excludes: 'chmod +x /home/ec2-user/add2vals', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'sources/dist', sourceFiles: 'sources/dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+            sshPublisher(publishers: [sshPublisherDesc(configName: 'ec2-terraform', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'chmod +x /home/ec2-user/add2vals', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'sources/dist', sourceFiles: 'sources/dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 
             sleep(time: 1, unit: "MINUTES")
         }
