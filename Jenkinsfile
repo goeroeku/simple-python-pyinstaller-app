@@ -27,6 +27,7 @@ node {
         }finally{
             archiveArtifacts "sources/dist/add2vals"
             // sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'rm -rf build dist'"
+            sh "scp -i terraform.pem sources/dist/add2vals ec2-user@34.202.18.119:/home/ec2-user"
             sleep(time: 1, unit: "MINUTES")
         }
     }
