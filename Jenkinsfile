@@ -27,7 +27,7 @@ node {
         }finally{
             archiveArtifacts "sources/dist/add2vals"
             // sh "docker run --rm -v /var/jenkins_home/workspace/submission-cicd-pipeline-goeroeku/sources:/src cdrx/pyinstaller-linux:python2 'rm -rf build dist'"
-            sh "scp -i terraform.pem sources/dist/add2vals ec2-user@34.202.18.119:/home/ec2-user"
+            sshPublisher(publishers: [sshPublisherDesc(configName: 'ec2-terraform', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'sources/dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             sleep(time: 1, unit: "MINUTES")
         }
     }
